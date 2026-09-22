@@ -109,30 +109,31 @@ def clean_books(books, customers):
     return books
 
 
-# Read the CSV files
-books = pd.read_csv("data/library.csv")
-customers = pd.read_csv("data/library_customers.csv")
+# Only runs when cleaning_module.py is opened directly
+if __name__ == "__main__":
 
-# Show the original number of rows
-print("Original book rows:", len(books))
-print("Original customer rows:", len(customers))
+    # Read the CSV files
+    books = pd.read_csv("data/library.csv")
+    customers = pd.read_csv("data/library_customers.csv")
 
-# Run the cleaning functions
-customers = clean_customers(customers)
-books = clean_books(books, customers)
+    # Show the original number of rows
+    print("Original book rows:", len(books))
+    print("Original customer rows:", len(customers))
 
-# Show the cleaned data
-print("Cleaned book data:")
-print(books)
+    # Run the cleaning functions
+    customers = clean_customers(customers)
+    books = clean_books(books, customers)
 
-print("Cleaned customer data:")
-print(customers)
+    # Show the cleaned data
+    print(books)
+    print(customers)
 
-# Save the cleaned files
-books.to_csv("data/cleaned_library.csv", index=False)
-customers.to_csv(
-    "data/cleaned_library_customers.csv",
-    index=False
-)
+    # Save the cleaned files
+    books.to_csv("data/cleaned_library.csv", index=False)
 
-print("Data cleaning completed")
+    customers.to_csv(
+        "data/cleaned_library_customers.csv",
+        index=False
+    )
+
+    print("Data cleaning completed")
