@@ -38,3 +38,7 @@ The tests check:
 Run the tests using:
 
 `python -m pytest testing_module.py -v`
+
+### Additional testing
+
+A second test file uses Python's built-in `unittest` module.
