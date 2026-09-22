@@ -20,3 +20,21 @@ The cleaned results are saved as:
 The main Python file is:
 
 - `cleaning_module.py`
+
+
+
+## Unit testing
+
+Pytest is used to test the data-cleaning functions.
+
+The tests check:
+
+- Empty cells are removed.
+- Date columns use the correct data type.
+- Incorrect customer, date and borrowing data is removed.
+- Duplicate loans are removed.
+- Book titles do not contain trailing spaces.
+
+Run the tests using:
+
+`python -m pytest testing_module.py -v`
