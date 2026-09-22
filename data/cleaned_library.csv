@@ -1,14 +1,9 @@
-Id,Books,Book checkout,Book Returned,Days allowed to borrow,Customer ID
-1,Catcher in the Rye ,2023-02-20,2023-02-25,2 weeks,1
-6,Little Women,2023-04-02,2023-05-01,2 weeks,1
-9,Catch 22,2023-04-15,2023-04-16,2 weeks,7
-10,Animal Farm ,2023-04-20,2023-04-24,2 weeks,2
-11,1984,2023-04-23,2023-04-27,2 weeks,8
-12,Little Women,2023-04-02,2023-05-01,2 weeks,1
-13,East of Eden,2023-04-30,2023-05-05,2 weeks,2
-14,America Is in the Heart,2023-05-01,2023-05-07,2 weeks,3
-15,Wuthering Heights,2023-05-01,2023-05-10,2 weeks,9
-16,Dark Tales,2023-05-15,2023-06-01,2 weeks,2
-18,Les Miserables,2023-06-03,2023-06-07,2 weeks,5
-19,Dracula,2023-06-10,2023-07-10,2 weeks,10
-20,Frankenstein,2023-06-01,2023-06-20,2 weeks,2
+Id,Books,Book checkout,Book Returned,Days allowed to borrow,Customer ID,Days allowed,Days borrowed
+1,Catcher in the Rye,2023-02-20,2023-02-25,2 weeks,1,14,5
+9,Catch 22,2023-04-15,2023-04-16,2 weeks,7,14,1
+10,Animal Farm,2023-04-20,2023-04-24,2 weeks,2,14,4
+11,1984,2023-04-23,2023-04-27,2 weeks,8,14,4
+13,East of Eden,2023-04-30,2023-05-05,2 weeks,2,14,5
+14,America Is in the Heart,2023-05-01,2023-05-07,2 weeks,3,14,6
+15,Wuthering Heights,2023-05-01,2023-05-10,2 weeks,9,14,9
+18,Les Miserables,2023-06-03,2023-06-07,2 weeks,5,14,4
