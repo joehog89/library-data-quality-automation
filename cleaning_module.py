@@ -1,10 +1,10 @@
 import pandas as pd
 
-# Read the CSV files
+# Read CSV files
 books = pd.read_csv("data/library.csv")
 customers = pd.read_csv("data/library_customers.csv")
 
-# Show the original data
+# Show original data
 print(books)
 print(customers)
 
@@ -12,15 +12,15 @@ print(customers)
 print(books.isnull().sum())
 print(customers.isnull().sum())
 
-# Remove rows with empty cells
+#Remove rows with empty cells
 books = books.dropna()
 customers = customers.dropna()
 
-# Check for duplicates
+# Check for dupes
 print(books.duplicated())
 print(customers.duplicated())
 
-# Remove duplicates
+# Remove dupes
 books = books.drop_duplicates()
 customers = customers.drop_duplicates()
 
@@ -28,7 +28,6 @@ customers = customers.drop_duplicates()
 books["Book checkout"] = books["Book checkout"].str.replace('"', '')
 
 # Change the columns into date format
-# Invalid dates will be changed into empty values
 books["Book checkout"] = pd.to_datetime(
     books["Book checkout"],
     dayfirst=True,
@@ -44,7 +43,7 @@ books["Book Returned"] = pd.to_datetime(
 # Remove rows containing invalid dates
 books = books.dropna()
 
-# Check the different book names
+#Check the different book names
 print(books["Books"].value_counts())
 
 # Correct a spelling mistake
