@@ -4,3 +4,8 @@
 # Raw source data
 data/library.csv
 data/library_customers.csv
+
+
+__pycache__/
+*.pyc
+.pytest_cache/

@@ -21,6 +21,9 @@ def test_empty_cells():
     assert cleaned_books.isnull().sum().sum() == 0
     assert cleaned_customers.isnull().sum().sum() == 0
 
+    # Check that every loan has a customer ID
+    assert cleaned_books["Customer ID"].isnull().sum() == 0
+
 
 # Test that the dates are in the correct format
 def test_date_format():
@@ -48,6 +51,9 @@ def test_wrong_data():
         "Lord of the rings the return of the kind"
         not in cleaned_books["Books"].values
     )
+
+    # Check that book titles do not have trailing spaces
+    assert cleaned_books["Books"].str.endswith(" ").sum() == 0
 
 
 # Test that duplicate loans have been removed
