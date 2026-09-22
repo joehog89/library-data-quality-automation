@@ -1,7 +1,7 @@
 import pandas as pd
 import pytest
 
-# Import the cleaning functions
+## Import the cleaning functions
 from cleaning_module import clean_books
 from cleaning_module import clean_customers
 
