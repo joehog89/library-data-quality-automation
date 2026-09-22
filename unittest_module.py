@@ -7,7 +7,7 @@ from cleaning_module import clean_customers
 
 class TestLibraryCleaning(unittest.TestCase):
 
-    # Runs before each test
+    ## Runs before each test
     def setUp(self):
 
         self.books = pd.read_csv("data/library.csv")
