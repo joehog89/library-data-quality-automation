@@ -1,9 +1,8 @@
-
 # GitHub Actions workflow for the library project
 
 name: Joes Library Tests
 
-# Controls when the workflow will run
+# Controls when the workflow runs
 on:
   # Runs when code is pushed to main
   push:
@@ -16,7 +15,7 @@ on:
   # Allows the workflow to be run manually
   workflow_dispatch:
 
-# Stops older runs if a newer run starts
+# Cancels an older run when a newer run starts
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
@@ -24,12 +23,12 @@ concurrency:
 jobs:
   build:
     # Use a GitHub-hosted Linux machine
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
 
     steps:
       # Download the repository onto the runner
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       # Print my name
       - name: Print my name
@@ -37,15 +36,15 @@ jobs:
 
       # Install Python
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v7
         with:
           python-version: "3.12"
 
-      # Show the installed Python version
+      # Display the installed Python version
       - name: Check Python version
         run: python --version
 
-      # Install the required modules
+      # Install the required Python modules
       - name: Install requirements
         run: |
           python -m pip install --upgrade pip
