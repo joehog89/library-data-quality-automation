@@ -26,10 +26,16 @@ def test_empty_cells():
 
 
 # Test  dates are in the correct format
+# Test that the columns have been changed into date format
 def test_date_format():
 
-    assert str(cleaned_books["Book checkout"].dtype) == "datetime64[ns]"
-    assert str(cleaned_books["Book Returned"].dtype) == "datetime64[ns]"
+    assert pd.api.types.is_datetime64_any_dtype(
+        cleaned_books["Book checkout"]
+    )
+
+    assert pd.api.types.is_datetime64_any_dtype(
+        cleaned_books["Book Returned"]
+    )
 
 
 # Test that wrong data has been removed
