@@ -15,6 +15,10 @@ on:
   # Allows the workflow to be run manually
   workflow_dispatch:
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   build:
     # Use a GitHub-hosted Linux machine
