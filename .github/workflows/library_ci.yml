@@ -1,0 +1,60 @@
+
+# GitHub Actions workflow for the library project
+
+name: Joes Library Tests
+
+# Controls when the workflow will run
+on:
+  # Runs when code is pushed to main
+  push:
+    branches: ["main"]
+
+  # Runs when a pull request targets main
+  pull_request:
+    branches: ["main"]
+
+  # Allows the workflow to be run manually
+  workflow_dispatch:
+
+# Stops older runs if a newer run starts
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    # Use a GitHub-hosted Linux machine
+    runs-on: ubuntu-latest
+
+    steps:
+      # Download the repository onto the runner
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Print my name
+      - name: Print my name
+        run: echo "Hello, Joe!"
+
+      # Install Python
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # Show the installed Python version
+      - name: Check Python version
+        run: python --version
+
+      # Install the required modules
+      - name: Install requirements
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r pipeline/requirements.txt
+
+      # Run the pytest tests
+      - name: Run pytest tests
+        run: python -m pytest testing/testing_module.py -v
+
+      # Run the unittest tests
+      - name: Run unittest tests
+        run: python -m testing.unittest_module -v
