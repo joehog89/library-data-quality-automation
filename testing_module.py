@@ -1,21 +1,21 @@
 import pandas as pd
 import pytest
 
-## Import the cleaning functions
+## Import cleaning functions
 from cleaning_module import clean_books
 from cleaning_module import clean_customers
 
 
-# Read the test data
+# Read test data
 books = pd.read_csv("data/library.csv")
 customers = pd.read_csv("data/library_customers.csv")
 
-# Run the cleaning functions
+# Run cleaning functions
 cleaned_customers = clean_customers(customers)
 cleaned_books = clean_books(books, cleaned_customers)
 
 
-# Test that empty cells have been removed
+# Test empty cells have been removed
 def test_empty_cells():
 
     assert cleaned_books.isnull().sum().sum() == 0
@@ -25,7 +25,7 @@ def test_empty_cells():
     assert cleaned_books["Customer ID"].isnull().sum() == 0
 
 
-# Test that the dates are in the correct format
+# Test  dates are in the correct format
 def test_date_format():
 
     assert str(cleaned_books["Book checkout"].dtype) == "datetime64[ns]"
