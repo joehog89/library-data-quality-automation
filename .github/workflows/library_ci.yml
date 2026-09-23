@@ -69,3 +69,8 @@ jobs:
       # Run the unittest tests
       - name: Run unittest tests
         run: python -m testing.unittest_module -v
+
+
+      # Build the application as a Docker image
+      - name: Build Docker image
+        run: docker build -f docker/Dockerfile -t library-data-cleaning .       
