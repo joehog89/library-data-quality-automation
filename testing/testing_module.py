@@ -2,8 +2,8 @@ import pandas as pd
 import pytest
 
 ## Import cleaning functions
-from cleaning_module import clean_books
-from cleaning_module import clean_customers
+from testing.cleaning_module import clean_books
+from testing.cleaning_module import clean_customers
 
 
 # Read test data

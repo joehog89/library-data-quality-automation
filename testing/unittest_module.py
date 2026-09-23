@@ -1,9 +1,9 @@
 import unittest
 import pandas as pd
 
-from cleaning_module import clean_books
-from cleaning_module import clean_customers
 
+from testing.cleaning_module import clean_books
+from testing.cleaning_module import clean_customers
 
 class TestLibraryCleaning(unittest.TestCase):
 
