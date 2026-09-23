@@ -34,6 +34,18 @@ jobs:
       - name: Print my name
         run: echo "Hello, Joe!"
 
+            # Checks that the GitHub secret is available
+      - name: Check GitHub secret
+        env:
+          LIBRARY_SECRET: ${{ secrets.LIBRARY_SECRET }}
+        run: |
+          if [ -n "$LIBRARY_SECRET" ]; then
+            echo "GitHub secret loaded successfully"
+          else
+            echo "GitHub secret was not found"
+            exit 1
+          fi
+
       # Install Python
       - name: Set up Python
         uses: actions/setup-python@v7
