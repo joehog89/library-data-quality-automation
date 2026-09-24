@@ -1,0 +1,97 @@
+name: Joes Library CI and Docker
+
+# Run when code is pushed to main,
+# when a pull request targets main,
+# or when started manually
+on:
+  push:
+    branches: ["main"]
+
+  pull_request:
+    branches: ["main"]
+
+  workflow_dispatch:
+
+# Cancel an older run if a newer one starts
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+# Name used for the Docker image
+env:
+  IMAGE_NAME: library-quality-analysis
+
+jobs:
+
+  # Test the Python application
+  test:
+    name: Run Python Tests
+    runs-on: ubuntu-24.04
+
+    steps:
+      # Download the repository
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+      # Install Python
+      - name: Set up Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.14"
+          cache: "pip"
+          cache-dependency-path: pipeline/requirements.txt
+
+      # Install the required modules
+      - name: Install requirements
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r pipeline/requirements.txt
+
+      # Run the pytest tests
+      - name: Run pytest tests
+        run: python -m pytest testing/testing_module.py -v
+
+      # Run the unittest tests
+      - name: Run unittest tests
+        run: python -m testing.unittest_module -v
+
+  # Build the Docker image after the tests pass
+  build:
+    name: Build Docker Image
+    needs: test
+    runs-on: ubuntu-24.04
+
+    steps:
+      # Download the repository
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+      # Build the Docker image
+      - name: Create Docker image
+        run: |
+          docker build \
+            --file docker/Dockerfile \
+            --tag $IMAGE_NAME:${{ github.sha }} \
+            .
+
+      # Start the container
+      # The container runs pytest and then the application
+      - name: Run Docker image
+        run: |
+          docker run --rm \
+            $IMAGE_NAME:${{ github.sha }}
+
+      # Save the image as a file
+      - name: Save Docker image
+        run: |
+          docker save \
+            $IMAGE_NAME:${{ github.sha }} \
+            --output $IMAGE_NAME.tar
+
+      # Store the image as a downloadable workflow artifact
+      - name: Upload Docker image
+        uses: actions/upload-artifact@v7
+        with:
+          name: ${{ env.IMAGE_NAME }}-${{ github.sha }}
+          path: ${{ env.IMAGE_NAME }}.tar
+          if-no-files-found: error
