@@ -6,7 +6,7 @@ The original process required records to be checked manually, which took time an
 
 ## Live dashboard
 
-[Open the Library Data Quality Dashboard](https://joes-library-dashboard.streamlit.app/)
+[Open the Library Data Quality Dashboard](https://library-data-quality-automation.streamlit.app/)
 
 The dashboard displays:
 
