@@ -76,7 +76,7 @@ jobs:
 
       # Start the container
       # The container runs pytest and then the application
-      - name: Run Docker image
+      - name: Run Docker container
         run: |
           docker run --rm \
             $IMAGE_NAME:${{ github.sha }}
